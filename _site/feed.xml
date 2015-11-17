@@ -6,15 +6,20 @@
 </description>
     <link>http://proxem.github.io/</link>
     <atom:link href="http://proxem.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 17 Nov 2015 11:58:37 +0100</pubDate>
-    <lastBuildDate>Tue, 17 Nov 2015 11:58:37 +0100</lastBuildDate>
+    <pubDate>Tue, 17 Nov 2015 19:21:14 +0100</pubDate>
+    <lastBuildDate>Tue, 17 Nov 2015 19:21:14 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+        <title>The Quest for </title>
+        <description>&lt;p&gt;At Proxem, our clients ask us to extract information from e-mails, social medias, press articles, and basically any type of text you can imagine. In the standard case, the text to process is written in various languages. To establish systems that support a wide scale of languages and formats is one of the mission of our Research team.&lt;/p&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;p&gt;Another goal of ours is to develop cross-lingual algorithms, that is algorithms which take as input texts in different languages and output an information computed on all those texts. For example on a task called sentiment analysis, which consists in detecting the &amp;quot;polarity&amp;quot; of a document (&amp;quot;is this document rather positive or negative?&amp;quot;), we want to implement a unique algorithm that would take as input sentences in English, Chinese, Spanish, etc and would compute a score. There are multiple reasons for us to aim at this. One is for simplicity sake. Indeed, we do not want to implement as many algorithms as languages we may have to handle. Another reason for that choice is that we want to leverage the important amount of available data for some languages to improve the accuracy on languages where data is rare.&lt;/p&gt;
+
+&lt;p&gt;A first step in this direction was to build a first representation layer that embeds words in a multidimensional space, which would then feed our algorithms. If you are familiar with word embeddings and especially its most famous implementation Word2Vec, well you must have realized that it is what we want :). Those &amp;quot;word vectors&amp;quot; have super nice properties:
+- the Euclidian distance works on them like a &amp;quot;semantic distance&amp;quot; in the sense that e.g &amp;quot;beautiful&amp;quot; is closer to &amp;quot;pretty&amp;quot; than to &amp;quot;algorithm&amp;quot;, which make them far more interesting than tradition bag-of-words;
+- they capture semantic analogies: 
+&lt;div&gt;$$\vec{king} - \vec{man} = \vec{queen} - \vec{woman}$$&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
 
@@ -25,7 +30,6 @@
 &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
-
 </description>
         <pubDate>Tue, 17 Nov 2015 11:43:56 +0100</pubDate>
         <link>http://proxem.github.io/jekyll/update/2015/11/17/welcome-to-jekyll.html</link>

@@ -16,6 +16,6 @@ twitter_username: proxem
 github_username:  proxem
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
 
 highlighter: pygments
