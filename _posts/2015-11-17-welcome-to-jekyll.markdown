@@ -17,16 +17,23 @@ A first step in this direction was to build a first representation layer that em
 
 + and so on [TO DO]
 
-So word embeddings are a very good start. The problem is, with the Word2Vec ot the GloVe implementations, you only get a set of different word embeddings for each language. What if we had just one set of word embeddings for all language? We wouldn't have to even worry about language detection. One property we would also like our word embeddings to have is that they conserve semantic distance throughout languages. For example, we want "pretty" to be close to "schön" and to "joli".
+So word embeddings are a very good start. The problem is, with current implementations, you only get a set of different word embeddings for each language. What if we had just one set of word embeddings for all language? We wouldn't have to even worry about language detection. One property we would also like our word embeddings to have is that they conserve semantic distance throughout languages. For example, we want "pretty" to be close to "schön" in German and to "joli" in French.
 
-In a recent paper that we presented at EMNLP'15 in Lisboa, we introduced a simple and scalable method to achieve this goal called Trans-Gram, in reference to the Skip-Gram implementation from T. Mikolov. With this method we have aligned 21 languages in 2 and a half hours on CPU.
+In a recent paper that we presented at EMNLP'15 in Lisboa, we introduced a simple and scalable method to achieve this goal called Trans-Gram [TD : Mettre le lien vers l'article + Mettre l'article sur ArXiv], in reference to the Skip-Gram implementation from T. Mikolov. With this method we have aligned 21 languages in 2 and a half hours on CPU for 40-dimensional vectors and about 10 hours for 300-dimensional vectors.
 
 The core idea is to extend the Skip-Gram model to a multilingual setting. By analogy with Skip-Gram, the target word vectors are fitted to maximise their probability given their context, but here the source sentence is considered as the target word's context (and vice versa -- target sentence is a source word's context). Since the whole foreign sentence is considered as a context, there is no need in word-aligned data, any sentence-aligned parallel corpus can be used for training.
 
-![Minion](http://octodex.github.com/images/minion.png)
+![Minion](http://proxem.github.io/image.png)
+[TD : Mettre le lien vers le graphe de Trans-Gram]
+
+To illustrate our word vectors, we printed the top ten words closest to the word "innovation" in French:
+
+![Minion](./image.PNG)
+[TD : Mettre le tableau des innovations en 21 langues]
+
+Here is also a tSNE that illustrate the alignement between words throughtout languages.
 
 We also demonstrate some useful properties of the cross-lingual word embeddings: their ability to discriminate between different word senses by combining vectors from different languages, and their ability to align the linguistic features across languages.
-
 
 Jekyll also offers powerful support for code snippets:
 

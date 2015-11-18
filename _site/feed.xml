@@ -6,8 +6,8 @@
 </description>
     <link>http://proxem.github.io/</link>
     <atom:link href="http://proxem.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 18 Nov 2015 15:30:00 +0100</pubDate>
-    <lastBuildDate>Wed, 18 Nov 2015 15:30:00 +0100</lastBuildDate>
+    <pubDate>Wed, 18 Nov 2015 16:44:00 +0100</pubDate>
+    <lastBuildDate>Wed, 18 Nov 2015 16:44:00 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -25,13 +25,21 @@
 &lt;li&gt;&lt;p&gt;and so on [TO DO]&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;So word embeddings are a very good start. The problem is, with the Word2Vec ot the GloVe implementations, you only get a set of different word embeddings for each language. What if we had just one set of word embeddings for all language? We wouldn&amp;#39;t have to even worry about language detection. One property we would also like our word embeddings to have is that they conserve semantic distance throughout languages. For example, we want &amp;quot;pretty&amp;quot; to be close to &amp;quot;schön&amp;quot; and to &amp;quot;joli&amp;quot;.&lt;/p&gt;
+&lt;p&gt;So word embeddings are a very good start. The problem is, with current implementations, you only get a set of different word embeddings for each language. What if we had just one set of word embeddings for all language? We wouldn&amp;#39;t have to even worry about language detection. One property we would also like our word embeddings to have is that they conserve semantic distance throughout languages. For example, we want &amp;quot;pretty&amp;quot; to be close to &amp;quot;schön&amp;quot; in German and to &amp;quot;joli&amp;quot; in French.&lt;/p&gt;
 
-&lt;p&gt;In a recent paper that we presented at EMNLP&amp;#39;15 in Lisboa, we introduced a simple and scalable method to achieve this goal called Trans-Gram, in reference to the Skip-Gram implementation from T. Mikolov. With this method we have aligned 21 languages in 2 and a half hours on CPU.&lt;/p&gt;
+&lt;p&gt;In a recent paper that we presented at EMNLP&amp;#39;15 in Lisboa, we introduced a simple and scalable method to achieve this goal called Trans-Gram [TD : Mettre le lien vers l&amp;#39;article + Mettre l&amp;#39;article sur ArXiv], in reference to the Skip-Gram implementation from T. Mikolov. With this method we have aligned 21 languages in 2 and a half hours on CPU for 40-dimensional vectors and about 10 hours for 300-dimensional vectors.&lt;/p&gt;
 
 &lt;p&gt;The core idea is to extend the Skip-Gram model to a multilingual setting. By analogy with Skip-Gram, the target word vectors are fitted to maximise their probability given their context, but here the source sentence is considered as the target word&amp;#39;s context (and vice versa -- target sentence is a source word&amp;#39;s context). Since the whole foreign sentence is considered as a context, there is no need in word-aligned data, any sentence-aligned parallel corpus can be used for training.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://octodex.github.com/images/minion.png&quot; alt=&quot;Minion&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://proxem.github.io/image.png&quot; alt=&quot;Minion&quot;&gt;
+[TD : Mettre le lien vers le graphe de Trans-Gram]&lt;/p&gt;
+
+&lt;p&gt;To illustrate our word vectors, we printed the top ten words closest to the word &amp;quot;innovation&amp;quot; in French:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;./image.PNG&quot; alt=&quot;Minion&quot;&gt;
+[TD : Mettre le tableau des innovations en 21 langues]&lt;/p&gt;
+
+&lt;p&gt;Here is also a tSNE that illustrate the alignement between words throughtout languages.&lt;/p&gt;
 
 &lt;p&gt;We also demonstrate some useful properties of the cross-lingual word embeddings: their ability to discriminate between different word senses by combining vectors from different languages, and their ability to align the linguistic features across languages.&lt;/p&gt;
 
