@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>The Quest for </title>
+  <title>The Quest for Cross-Lingual Systems</title>
   <meta name="description" content="At Proxem, our clients ask us to extract information from e-mails, social medias, press articles, and basically any type of text you can imagine. In the stan...">
 
   <link rel="stylesheet" href="/css/main.css">
@@ -57,7 +57,7 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">The Quest for </h1>
+    <h1 class="post-title" itemprop="name headline">The Quest for Cross-Lingual Systems</h1>
     <p class="post-meta"><time datetime="2015-11-17T11:43:56+01:00" itemprop="datePublished">Nov 17, 2015</time></p>
   </header>
 
@@ -66,10 +66,22 @@
 
 <p>Another goal of ours is to develop cross-lingual algorithms, that is algorithms which take as input texts in different languages and output an information computed on all those texts. For example on a task called sentiment analysis, which consists in detecting the &quot;polarity&quot; of a document (&quot;is this document rather positive or negative?&quot;), we want to implement a unique algorithm that would take as input sentences in English, Chinese, Spanish, etc and would compute a score. There are multiple reasons for us to aim at this. One is for simplicity sake. Indeed, we do not want to implement as many algorithms as languages we may have to handle. Another reason for that choice is that we want to leverage the important amount of available data for some languages to improve the accuracy on languages where data is rare.</p>
 
-<p>A first step in this direction was to build a first representation layer that embeds words in a multidimensional space, which would then feed our algorithms. If you are familiar with word embeddings and especially its most famous implementation Word2Vec, well you must have realized that it is what we want :). Those &quot;word vectors&quot; have super nice properties:
-- the Euclidian distance works on them like a &quot;semantic distance&quot; in the sense that e.g &quot;beautiful&quot; is closer to &quot;pretty&quot; than to &quot;algorithm&quot;, which make them far more interesting than tradition bag-of-words;
-- they capture semantic analogies: 
-<div>$$\vec{king} - \vec{man} = \vec{queen} - \vec{woman}$$</div></p>
+<p>A first step in this direction was to build a first representation layer that embeds words in a multidimensional space, which would then feed our algorithms. If you are familiar with word embeddings and especially its most famous implementation Word2Vec, well you must have realized that it is what we want :). Those &quot;word vectors&quot; have super nice properties:</p>
+
+<ul>
+<li><p>the Euclidian distance works on them like a &quot;semantic distance&quot; in the sense that e.g &quot;beautiful&quot; is closer to &quot;pretty&quot; than to &quot;algorithm&quot;, which make them far more interesting than tradition bag-of-words</p></li>
+<li><p>they seem to capture semantic analogies such as &quot;a is to b what c is to d&quot;: 
+<div>$$\vec{king} - \vec{man} \approx \vec{queen} - \vec{woman}$$</div></p></li>
+<li><p>and so on [TO DO]</p></li>
+</ul>
+
+<p>So word embeddings are a very good start. The problem is, with the Word2Vec ot the GloVe implementations, you only get a set of different word embeddings for each language. What if we had just one set of word embeddings for all language? We wouldn&#39;t have to even worry about language detection. One property we would also like our word embeddings to have is that they conserve semantic distance throughout languages. For example, we want &quot;pretty&quot; to be close to &quot;schön&quot; and to &quot;joli&quot;.</p>
+
+<p>In a recent paper that we presented at EMNLP&#39;15 in Lisboa, we introduced a simple and scalable method to achieve this goal called Trans-Gram, in reference to the Skip-Gram implementation from T. Mikolov. With this method we have aligned 21 languages in 2 and a half hours on CPU.</p>
+
+<p>The core idea is to extend the Skip-Gram model to a multilingual setting. By analogy with Skip-Gram, the target word vectors are fitted to maximise their probability given their context, but here the source sentence is considered as the target word&#39;s context (and vice versa -- target sentence is a source word&#39;s context). Since the whole foreign sentence is considered as a context, there is no need in word-aligned data, any sentence-aligned parallel corpus can be used for training.</p>
+
+<p>We also demonstrate some useful properties of the cross-lingual word embeddings: their ability to discriminate between different word senses by combining vectors from different languages, and their ability to align the linguistic features across languages.</p>
 
 <p>Jekyll also offers powerful support for code snippets:</p>
 
