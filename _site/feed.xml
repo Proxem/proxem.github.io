@@ -6,8 +6,8 @@
 </description>
     <link>http://proxem.github.io/</link>
     <atom:link href="http://proxem.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 18 Nov 2015 12:35:27 +0100</pubDate>
-    <lastBuildDate>Wed, 18 Nov 2015 12:35:27 +0100</lastBuildDate>
+    <pubDate>Wed, 18 Nov 2015 15:30:00 +0100</pubDate>
+    <lastBuildDate>Wed, 18 Nov 2015 15:30:00 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -30,6 +30,8 @@
 &lt;p&gt;In a recent paper that we presented at EMNLP&amp;#39;15 in Lisboa, we introduced a simple and scalable method to achieve this goal called Trans-Gram, in reference to the Skip-Gram implementation from T. Mikolov. With this method we have aligned 21 languages in 2 and a half hours on CPU.&lt;/p&gt;
 
 &lt;p&gt;The core idea is to extend the Skip-Gram model to a multilingual setting. By analogy with Skip-Gram, the target word vectors are fitted to maximise their probability given their context, but here the source sentence is considered as the target word&amp;#39;s context (and vice versa -- target sentence is a source word&amp;#39;s context). Since the whole foreign sentence is considered as a context, there is no need in word-aligned data, any sentence-aligned parallel corpus can be used for training.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://octodex.github.com/images/minion.png&quot; alt=&quot;Minion&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;We also demonstrate some useful properties of the cross-lingual word embeddings: their ability to discriminate between different word senses by combining vectors from different languages, and their ability to align the linguistic features across languages.&lt;/p&gt;
 
