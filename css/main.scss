@@ -43,6 +43,14 @@ $on-laptop:        800px;
     }
 }
 
+.image-wrapper {
+    text-align: center;
+
+    .image-caption {
+        color: $grey-color;
+        margin-top: $spacing-unit / 3;
+    }
+}
 
 
 // Import partials from `sass_dir` (defaults to `_sass`)

@@ -19,27 +19,34 @@ A first step in this direction was to build a first representation layer that em
 
 <br>
 
----
-
-<br>
-
 **From \\( \vec{king} - \vec{man} \approx \vec{queen} - \vec{woman} \\) to \\( \vec{rey}\_{es} - \vec{Mann}\_{de} \approx \vec{regina}\_{it} - \vec{femme}\_{fr} \\)**
 
-So word embeddings are a very good start. The problem is, with current implementations, you only get a set of different word embeddings for each language. What if we had just one set of word embeddings for all language? We wouldn't have to even worry about language detection. One property we would also like our word embeddings to have is that they conserve semantic distance throughout languages. For example, we want "pretty" to be close to "schön" in German and to "joli" in French.
+So word embeddings are a very good start. One property we would also like our word embeddings to have is that they conserve semantic distance throughout languages. For example, we want "pretty" to be close to "schön" in German and to "joli" in French.
 
-In a recent paper that we presented at EMNLP'15 in Lisboa, we introduced a simple and scalable method to achieve this goal called [Trans-Gram][article] in reference to the Skip-Gram implementation from T. Mikolov. With this method we have aligned 21 languages in 2 and a half hours on CPU for 40-dimensional vectors and about 10 hours for 300-dimensional vectors.
+In a recent paper that we presented at EMNLP'15 in Lisboa, we introduced a simple and scalable method to achieve this goal called [Trans-Gram][article] in reference to the Skip-Gram implementation from T. Mikolov. With this method we have aligned 21 languages in 2 and a half hours on CPU for 40-dimensional vectors and about 20 hours for 300-dimensional vectors.
 
 The core idea is to extend the Skip-Gram model to a multilingual setting. By analogy with Skip-Gram, the target word vectors are fitted to maximise their probability given their context, but here the source sentence is considered as the target word's context (and vice versa -- target sentence is a source word's context). Since the whole foreign sentence is considered as a context, there is no need in word-aligned data, any sentence-aligned parallel corpus can be used for training.
 
-![Minion](/images/graph.PNG)
+{% include image.html
+            img="/images/graph.PNG"
+            title="Graph"
+            url="http://127.0.0.1:4000/images/graph.PNG" %}
 
 To illustrate our word vectors, we printed the top ten words closest to the word "innovation" in French:
 
-![Minion](/images/innovation.PNG)
+{% include image.html
+            img="/images/innovation.PNG"
+            title="Innovation"
+            caption= "Top 10 closest words to 'innovation'"
+            url="http://127.0.0.1:4000/images/innovation.PNG" %}
 
 Here is also a tSNE that illustrate the alignement between words throughtout languages:
 
-![Minion](/images/tsne.png)
+{% include image.html
+            img="images/tsne.png"
+            title="tSNE"
+            caption= "tSNE on aligned word embeddings"
+            url="http://127.0.0.1:4000/images/tsne.png" %}
 
 **Interesting properties**
 
@@ -47,28 +54,31 @@ We also demonstrate some useful properties of the cross-lingual word embeddings:
 
 We call the first task “cross-lingual disambiguation”. The goal of this task is to find a suitable representation for each sense of a given polysemous word. The idea of our method is to look for a language in which the undesired senses are represented by unambiguous words and then to perform some arithmetic operation on their corresponding embeddings. 
 
-Let’s illustrate the process with a concrete example: consider the French word “train”. The three closest Polish words to $\vec{train}_{fr}$ translate in English into “now”, “a train” and “when”. 
+Let’s illustrate the process with a concrete example: consider the French word “train”. The three closest Polish words to \\(\vec{train}_{fr}\\) translate in English into “now”, “a train” and “when”. 
 
 This seems like a poor matching. Indeed, "train" in French is polysemous. It can refer to a line of railroad cars, but it can also be used to form progressive tenses. The French sentence “Il est *en train de* manger” translates into “he is *eating*”, or in Italian “*sta* mangiando”. As the Italian word “sta” is used to form progressive tenses, it’s a good candidate to disambiguate "train" in French. Let’s introduce the vector 
 \\( \vec{v} \approx \vec{train}\_{fr} - \vec{sta}\_{it} \\).
 
 Now the three Polish words closest to \\(\vec{v} \\)  translate in English into “a train”, “a train” and “railroad”. Therefore \\(\vec{v} \\) is a better representation for the railroad sense of "train":
 
-![Minion](/images/lingtransfer.PNG)
+{% include image.html
+            img="images/lingtransfer.PNG"
+            title="Linguistic Properties Transfer"
+            url="http://127.0.0.1:4000/images/lingtransfer.PNG" %}
 
 Another interesting property of the vectors generated by Trans-Gram is the transfer of linguistic features through a pivot language that does not possess these features. Let’s illustrate this by focusing on Latin languages, which possess some features that English does not, like rich conjugations. For example, in French and Italian the infinitives of “eat” are "manger" in French and "mangiare" in Italian, and the first plural persons are "mangeons" in French and "mangiamo" in Italian. Actually in our models we observe the following alignments: \\( \vec{manger}\_{fr} \approx \vec{mangiare}\_{it} \\) and \\( \vec{mangeons}\_{fr} \approx \vec{mangiamo}\_{it} \\). It is thus remarkable to see that features not present in English match in languages aligned through English as the only pivot language. We also found similar transfers for the genders of adjectives and are currently studying other similar properties captured by Trans-gram.
 
-**Byte-level Processing: The Shape of Things to Come?**
+**Some examples of cross-lingual systems that leverage aligned word embeddings**
 
-We use those word embeddings for our classification and sequence-to-sequence labelling tasks such as Named Entity Recognitions, Part-of-Speech Tagging, etc. This allows us to transfer the information we have on certain languages to other languages.
+We use those word embeddings for our sequence-to-sequence labelling tasks such as Named Entity Recognitions, Part-of-Speech Tagging, etc. This allows us to transfer the information we have on certain languages to other languages, improving our performance on those tasks. 
 
-Now, words are a first, pragmatic step. This is not yet the most fundamental step to achieve cross-lingual systems “from scratch”, which is what we aim for. Indeed, feature engineering in NLP is similar to open Pandora’s Box: you don’t know if there will ever be an end to it. Think about it: multiply the number of specificities of every language with the specificities of every language register and with the specificities of every type of text (resumes, tweets, e-mails, legal articles, etc.). Now imagine how fast words appear and disappear in common language. You will end up soon giving up any hope of having a consistent set of rules for feature engineering that could scale. With aligned word embeddings, you can at least avoid the problem of spelling mistakes and ever expanding vocabularies throughout languages.
+We also did some experiments on cross-lingual classification tasks. On the article, we trained a simple perceptron to classify articles from the Reuters RCV1/RCV2 corpora in German and English. There are four topics: CCAT (Corporate/Industrial), ECAT (Economics), GCAT (Government/Social), and MCAT (Markets). We train on English and infer on German and vice versa. We reported a 91.1% accuracy on the English to German task and a 78.7% on the German to English task, which was above the current state-of-the-art at that time.
 
-Yet, a limitation of word embeddings is that in order to extract global information about a sentence, you may need to have information about morphemes or even the characters that form a word.While we showed evidence that word embeddings seem to capture those informations, we feel that we need a more fundamental level of processing in order to do NLP completely from scratch, to quote [Collobert][collobert]’s and [Zhang][zhang]’s words. Hence, we are also interested in character-level embeddings and even byte-level approaches, in order to capture very specific characters. Our intuition about the interest to go deeper into byte-level approaches was in part satisfied by the reading of a recent paper: [Multilingual Processing from Bytes][bytes].
+We also trained a convolutional neural network for sentiment analysis on short product reviews from Amazon written in five languages: English, German, Spanish, French and Italian. The network trained indifferently on all those sentences. The only handcrafted feature that was given was the language of the sentence. Results are encouraging: we report internally a cross-validation accuracy superior to 85% with two classes (either positive or negative).
 
-Of course, you would still need to expand from a good representation of a byte to a good representation of a word, then to a good representation of a sentence, then to a good representation of a paragraph, then to a document. But that is yet another story :)
+We use those systems to improve our product. The way we see it, all the verbatims no matter their language should be organized and displayed on the same interface and with the same taxonomy.
+
+Yet, a limitation of word embeddings is that in order to extract global information about a sentence, one needs to expand from a good representation of a word to a good representation of a sentence, then to a paragraph, then to a document, then to a corpus... But that is yet another story :)
 
 [article]: http://www.aclweb.org/anthology/D/D15/D15-1131.pdf
-[collobert]: http://arxiv.org/pdf/1103.0398
-[zhang]: http://arxiv.org/abs/1502.01710
-[bytes]: http://arxiv.org/abs/1512.00103
+
