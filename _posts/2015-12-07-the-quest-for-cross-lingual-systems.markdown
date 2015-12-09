@@ -2,7 +2,7 @@
 layout: post
 title:  "The Quest for Cross-Lingual Systems"
 date:   2015-12-07 11:43:56 +0100
-categories: jekyll update
+comments: true
 ---
 
 At Proxem, our clients ask us to extract information from e-mails, social medias, press articles, and basically any type of text you can imagine. In the standard case, the text to process is written in various languages. To establish systems that support a wide scale of languages and formats is one of the mission of our Research team.
@@ -67,3 +67,29 @@ We use those systems to improve our product. The way we see it, all the verbatim
 Yet, a limitation of word embeddings is that in order to extract global information about a sentence, one needs to expand from a good representation of a word to a good representation of a sentence, then to a paragraph, then to a document, then to a corpus... But that is yet another story :)
 
 [article]: http://www.aclweb.org/anthology/D/D15/D15-1131.pdf
+
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+var disqus_developer = 1;
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//proxem.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+{% endif %}
