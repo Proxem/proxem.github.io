@@ -6,8 +6,8 @@
 </description>
     <link>http://proxem.github.io/</link>
     <atom:link href="http://proxem.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 07 Dec 2015 18:33:46 +0100</pubDate>
-    <lastBuildDate>Mon, 07 Dec 2015 18:33:46 +0100</lastBuildDate>
+    <pubDate>Wed, 09 Dec 2015 15:24:52 +0100</pubDate>
+    <lastBuildDate>Wed, 09 Dec 2015 15:24:52 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -38,7 +38,7 @@
 
 &lt;div class=&quot;image-wrapper&quot; &gt;
     
-    &lt;a href=&quot;http://127.0.0.1:4000/images/graph.PNG&quot; title=&quot;Graph&quot; target=&quot;_blank&quot;&gt;
+    &lt;a href=&quot;http://proxem.github.io/images/graph.PNG&quot; title=&quot;Graph&quot; target=&quot;_blank&quot;&gt;
     
         &lt;img src=&quot;http://proxem.github.io//images/graph.PNG&quot; alt=&quot;Graph&quot;/&gt;
     
@@ -53,7 +53,7 @@
 
 &lt;div class=&quot;image-wrapper&quot; &gt;
     
-    &lt;a href=&quot;http://127.0.0.1:4000/images/innovation.PNG&quot; title=&quot;Innovation&quot; target=&quot;_blank&quot;&gt;
+    &lt;a href=&quot;http://proxem.github.io/images/innovation.PNG&quot; title=&quot;Innovation&quot; target=&quot;_blank&quot;&gt;
     
         &lt;img src=&quot;http://proxem.github.io//images/innovation.PNG&quot; alt=&quot;Innovation&quot;/&gt;
     
@@ -70,7 +70,7 @@
 
 &lt;div class=&quot;image-wrapper&quot; &gt;
     
-    &lt;a href=&quot;http://127.0.0.1:4000/images/tsne.png&quot; title=&quot;tSNE&quot; target=&quot;_blank&quot;&gt;
+    &lt;a href=&quot;http://proxem.github.io/images/tsne.png&quot; title=&quot;tSNE&quot; target=&quot;_blank&quot;&gt;
     
         &lt;img src=&quot;http://proxem.github.io/images/tsne.png&quot; alt=&quot;tSNE&quot;/&gt;
     
@@ -98,7 +98,7 @@
 
 &lt;div class=&quot;image-wrapper&quot; &gt;
     
-    &lt;a href=&quot;http://127.0.0.1:4000/images/lingtransfer.PNG&quot; title=&quot;Linguistic Properties Transfer&quot; target=&quot;_blank&quot;&gt;
+    &lt;a href=&quot;http://proxem.github.io/images/lingtransfer.PNG&quot; title=&quot;Linguistic Properties Transfer&quot; target=&quot;_blank&quot;&gt;
     
         &lt;img src=&quot;http://proxem.github.io/images/lingtransfer.PNG&quot; alt=&quot;Linguistic Properties Transfer&quot;/&gt;
     
