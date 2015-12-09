@@ -3,6 +3,7 @@ layout: post
 title:  "The Quest for Cross-Lingual Systems"
 date:   2015-12-07 11:43:56 +0100
 comments: true
+permalink: /article/
 ---
 
 At Proxem, our clients ask us to extract information from e-mails, social medias, press articles, and basically any type of text you can imagine. In the standard case, the text to process is written in various languages. To establish systems that support a wide scale of languages and formats is one of the mission of our Research team.
